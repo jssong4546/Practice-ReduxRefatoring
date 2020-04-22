@@ -1,33 +1,33 @@
-import React from "react";
-import { connect } from "react-redux";
-import { setUsername, setDarkMode } from "../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { setUsername, setDarkMode } from '../actions';
 
 class Setting extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: props.user.name
+      username: props.user.name,
     };
   }
 
   handleChangeName(event) {
     this.setState({
-      username: event.target.value
+      username: event.target.value,
     });
   }
 
   handleSave() {
-    this.props.dispatch(/* TODO: 여기에서 액션을 실행합니다 */);
+    this.props.dispatch(setUsername(this.state.username));
   }
 
   handleToggleDarkMode(event) {
-    this.props.dispatch(/* TODO: 여기에서 액션을 실행합니다 */);
+    this.props.dispatch(setDarkMode(event.target.checked));
   }
 
   render() {
     return (
-      <div className={this.props.isOpen ? "mdl show" : "mdl"}>
+      <div className={this.props.isOpen ? 'mdl show' : 'mdl'}>
         <div className="mdl-mask" onClick={this.props.handleClose}></div>
         <div className="sidebar">
           <h3>Setting</h3>
@@ -63,8 +63,8 @@ class Setting extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.settingReducer.currentUser
+const mapStateToProps = (state) => ({
+  user: state.settingReducer.currentUser,
 });
 
 export default connect(mapStateToProps)(Setting);
